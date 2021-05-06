@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  dgraph:
+    image: dgraph/standalone:v21.03.0
+    ports:
+    - 8080:8080
+    - 9080:9080
+    - 8000:8000
+  backend:
+    restart: always
+    build:
+      context: api-server-with-auth
+      dockerfile: Dockerfile
+    environment:
+      SERVER_PORT: "9999"
+      DB_ADDR: "dgraph:9080"
+    ports:
+      - 9999:9999
+    depends_on:
+      - dgraph
+
+
