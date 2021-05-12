@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile
     environment:
       SERVER_PORT: "9999"
-      DB_ADDR: "dgraph:9080"
+      DGRAPH_URI: "dgraph:9080"
     ports:
       - 9999:9999
     depends_on:
